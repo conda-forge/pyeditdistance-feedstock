@@ -6,21 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyeditdistance-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyeditdistance-{{ version }}.tar.gz
   sha256: cab95198abe506437d2a82bfe151f63ed1f62358e3358522d4c0b5e96d258308
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - hatchling
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -31,6 +31,7 @@ test:
   requires:
     - pip
     - pytest
+    - python {{ python_min }}
   source_files:
     - tests/
 
